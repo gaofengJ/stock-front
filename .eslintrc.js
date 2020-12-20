@@ -77,11 +77,7 @@ module.exports = {
         parser: "babel-eslint"
     },
     globals: {
-        __BUILD__: true,
-        __DEV__: true,
-        __TEST__: true,
-        __PRE__: true,
-        __ONLINE__: true,
+        __ENV__: true,
         config: false,
         common: false
     }

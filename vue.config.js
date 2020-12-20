@@ -40,12 +40,7 @@ module.exports = {
       },
       plugins: [
         new webpack.DefinePlugin({
-          __ENV__: JSON.stringify(process.env.ENV || 'dev'),
-          __DEV__: !process.env.ENV || process.env.ENV === 'dev',
-          __TEST__: process.env.ENV === 'test',
-          __PRE__: process.env.ENV === 'pre',
-          __ONLINE__: process.env.ENV === 'online',
-          __BUILD__: process.env.NODE_ENV === 'production'
+          __ENV__: JSON.stringify(process.env.ENV || 'dev')
         }),
         new webpack.ProvidePlugin({
           $: 'jquery',

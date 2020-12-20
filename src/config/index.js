@@ -1,19 +1,19 @@
 let tmp = {}
 
 // dev
-if (__DEV__) {
+if (__ENV__ === 'dev') {
   tmp = require('./dev/index').default
 }
 // test
-if (__TEST__) {
+if (__ENV__ === 'test') {
   tmp = require('./test/index').default
 }
 // pre
-if (__PRE__) {
+if (__ENV__ === 'pre') {
   tmp = require('./pre/index').default
 }
 // online
-if (__ONLINE__) {
+if (__ENV__ === 'online') {
   tmp = require('./online/index').default
 }
 
