@@ -28,7 +28,7 @@ const router = new VueRouter({
             // ignoreAsideBar: true,
             // needLogin: true
           },
-          component: () => import('../views/home/index/index.vue')
+          component: () => import(/* webpackChunkName: 'home' */'../views/home/index/index.vue')
         },
         {
           path: '/quotation',
@@ -38,7 +38,7 @@ const router = new VueRouter({
             // ignoreAsideBar: true,
             // needLogin: true
           },
-          component: () => import('../views/quotation/index/index.vue')
+          component: () => import(/* webpackChunkName: 'quotation' */'../views/quotation/index/index.vue')
         },
         {
           path: '/data',
@@ -48,7 +48,7 @@ const router = new VueRouter({
             // ignoreAsideBar: true,
             // needLogin: true
           },
-          component: () => import('../views/data/index/index.vue'),
+          component: () => import(/* webpackChunkName: 'data' */'../views/data/index/index.vue'),
           redirect: '/data/stocks-statistics',
           children: [
             {
@@ -59,7 +59,7 @@ const router = new VueRouter({
                 // ignoreAsideBar: true,
                 // needLogin: true
               },
-              component: () => import('../views/data/stocks-statistics/index.vue')
+              component: () => import(/* webpackChunkName: 'data' */'../views/data/stocks-statistics/index.vue')
             },
             {
               path: '/data/limit-statistics',
@@ -69,7 +69,7 @@ const router = new VueRouter({
                 // ignoreAsideBar: true,
                 // needLogin: true
               },
-              component: () => import('../views/data/limit-statistics/index.vue')
+              component: () => import(/* webpackChunkName: 'data' */'../views/data/limit-statistics/index.vue')
             },
             {
               path: '/data/market-sentiment',
@@ -79,7 +79,7 @@ const router = new VueRouter({
                 // ignoreAsideBar: true,
                 // needLogin: true
               },
-              component: () => import('../views/data/market-sentiment/index.vue')
+              component: () => import(/* webpackChunkName: 'data' */'../views/data/market-sentiment/index.vue')
             },
             {
               path: '/data/popular-stocks',
@@ -89,7 +89,7 @@ const router = new VueRouter({
                 // ignoreAsideBar: true,
                 // needLogin: true
               },
-              component: () => import('../views/data/popular-stocks/index.vue')
+              component: () => import(/* webpackChunkName: 'data' */'../views/data/popular-stocks/index.vue')
             }
           ]
         },
@@ -101,7 +101,7 @@ const router = new VueRouter({
             // ignoreAsideBar: true,
             // needLogin: true
           },
-          component: () => import('../views/review/index/index.vue')
+          component: () => import(/* webpackChunkName: 'review' */'../views/review/index/index.vue')
         }
       ]
     },
