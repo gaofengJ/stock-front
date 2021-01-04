@@ -1,4 +1,4 @@
 export default {
   ENV: 'test',
-  baseUrl: 'http://localhost:3000'
+  baseUrl: 'http://47.99.111.167/api'
 }
