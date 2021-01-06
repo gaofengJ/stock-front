@@ -23,7 +23,6 @@
     <div class="center">
       <router-view/>
     </div>
-    <div class="right"></div>
   </div>
 </template>
 <script>
@@ -78,15 +77,7 @@ export default {
 }
 .center {
   box-sizing: border-box;
-  padding: 30px 300px;
+  padding: 30px 0 30px 300px;
   width: 100%;
-}
-.right {
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding-top: 60px;
-  width: 300px;
-  height: 100%;
 }
 </style>
