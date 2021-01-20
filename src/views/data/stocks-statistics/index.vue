@@ -46,6 +46,7 @@ export default {
         })
         this.list = list
       } catch (e) {
+        console.log(e)
       }
     },
     initEchart () {
