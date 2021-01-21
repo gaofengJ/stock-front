@@ -3,14 +3,19 @@
     <div class="search-wrap">
       <div class="filter-item">
         <el-date-picker
-          v-model="dateArr"
-          type="daterange"
+          v-model="startDate"
+          type="date"
           value-format="yyyy-MM-dd"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期" />
-        <el-button type="primary" @click="handleSearch">搜索</el-button>
+          placeholder="选择日期"/>
       </div>
+      <div class="filter-item">
+        <el-date-picker
+          v-model="endDate"
+          type="date"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期"/>
+      </div>
+      <el-button type="primary" @click="handleSearch">搜索</el-button>
     </div>
     <div class="echart-wrap">
       <div ref="echart" style="width: 800px; height:500px;" class="echart"></div>
@@ -25,32 +30,24 @@ import {
 export default {
   data () {
     return {
-      dateArr: ['', ''],
+      startDate: dateFormat(new Date(), 'yyyy-MM-dd'),
+      endDate: dateFormat(new Date(), 'yyyy-MM-dd'),
       list: []
     }
   },
   async created () {
-    this.initDate()
+    console.log(this.startDate)
     await this.getList()
     this.$nextTick(() => {
       this.initEchart()
     })
   },
   methods: {
-    initDate () {
-      const currentDate = dateFormat(new Date())
-      this.dateArr[0] = (() => {
-        const dateArr = currentDate.split('-')
-        dateArr[1] = dateArr[1] === '01' ? '12' : dateArr[1] - 1 + '' // 取上一个月
-        return dateArr.join('-')
-      })()
-      this.dateArr[1] = currentDate
-    },
     async getList () {
       try {
         const { list } = await getList({
-          startDate: this.dateArr[0],
-          endDate: this.dateArr[1]
+          startDate: this.startDate,
+          endDate: this.endDate
         })
         this.list = list
       } catch (e) {
@@ -139,6 +136,7 @@ export default {
     .filter-item {
       display: inline-flex;
       align-items: center;
+      margin-right: 20px;
       .el-range-editor {
         margin-right: 10px;
         ::v-deep .el-range-separator {
