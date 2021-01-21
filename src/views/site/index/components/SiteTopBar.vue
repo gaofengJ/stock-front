@@ -3,7 +3,10 @@
     <div class="top_container">
       <div class="top_container_left">
         <div class="logo"><i class="iconfont icon_fengye"></i><i>木风同学</i></div>
-        <el-input v-model="searchKey" placeholder="搜索" prefix-icon="el-icon-search"/>
+        <el-input v-model="searchKey"
+                  placeholder="搜索"
+                  prefix-icon="el-icon-search"
+                  @keyup.enter.native="handelSearch"/>
         <div class="tabs">
           <div
             v-for="(tab, index) in tabs"
@@ -70,6 +73,13 @@ export default {
       if (tab === this.activeTab) return
       this.activeTab = tab
       this.$router.push(`/${tab}`)
+    },
+    handelSearch () {
+      this.$message({
+        type: '',
+        message: '敬请期待哦',
+        center: true
+      })
     }
   }
 }
@@ -113,7 +123,7 @@ export default {
         height: 30px;
         ::v-deep .el-input__inner {
           height: 30px;
-          background-color: #F5F5F5;
+          background-color: #FFFFFF;
         }
         ::v-deep .el-input__prefix {
           top: -5px;
