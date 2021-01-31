@@ -26,7 +26,7 @@
 import { dateFormat } from '@/utils/date'
 import {
   getList
-} from '@/services/data/market-sentiment'
+} from '@/services/data/up-down-num'
 export default {
   data () {
     return {
@@ -56,15 +56,15 @@ export default {
       const chart = this.$echarts.init(this.$refs.echart)
       chart.setOption({
         title: {
-          text: '短线情绪指标'
+          text: '涨跌家数'
         },
         tooltip: {
           trigger: 'axis'
         },
         legend: {
-          data: ['非一字涨停', '打板高开率', '打板成功率', '打板被砸率']
+          data: ['上涨家数']
         },
-        color: ['#E26CB3', '#FFA283', '#67E0E3', '#37A2DA'],
+        color: ['#FF0000'],
         grid: {
           left: '3%',
           right: '4%',
@@ -85,28 +85,19 @@ export default {
           data: this.getEchartsData('date')
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          max: (val) => {
+            return val.max + 500
+          },
+          min: () => {
+            return 0
+          }
         },
         series: [
           {
-            name: '非一字涨停',
+            name: '上涨家数',
             type: 'line',
-            data: this.getEchartsData('sentiment_a')
-          },
-          {
-            name: '打板高开率',
-            type: 'line',
-            data: this.getEchartsData('sentiment_b')
-          },
-          {
-            name: '打板成功率',
-            type: 'line',
-            data: this.getEchartsData('sentiment_c')
-          },
-          {
-            name: '打板被砸率',
-            type: 'line',
-            data: this.getEchartsData('sentiment_d')
+            data: this.getEchartsData('up')
           }
         ]
       })

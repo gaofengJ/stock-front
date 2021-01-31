@@ -4,17 +4,11 @@
       <div class="aside">
         <ul class="aside_nav">
           <li class="nav_item">
-            <router-link to="">数据看盘</router-link>
             <ul class="sub_nav">
               <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/stocks-statistics' }"><router-link to="/data/stocks-statistics">涨跌统计</router-link></li>
-              <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/limit-statistics' }"><router-link to="/data/limit-statistics">涨跌停板</router-link></li>
-            </ul>
-          </li>
-          <li class="nav_item">
-            <router-link to="">短线情绪</router-link>
-            <ul class="sub_nav">
+              <!-- <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/limit-statistics' }"><router-link to="/data/limit-statistics">涨跌停板</router-link></li> -->
               <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/market-sentiment' }"><router-link to="/data/market-sentiment">短线情绪</router-link></li>
-              <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/popular-stocks' }"><router-link to="/data/popular-stocks">人气个股</router-link></li>
+              <li class="sub_nav_item" :class="{ 'active': $route.path === '/data/up-down-num' }"><router-link to="/data/up-down-num">涨跌家数</router-link></li>
             </ul>
           </li>
         </ul>

@@ -82,14 +82,14 @@ const router = new VueRouter({
               component: () => import(/* webpackChunkName: 'data' */'../views/data/market-sentiment/index.vue')
             },
             {
-              path: '/data/popular-stocks',
-              name: 'data-popular-stocks',
+              path: '/data/up-down-num',
+              name: 'data-up-down-num',
               meta: {
-                title: '人气个股'
+                title: '涨跌家数'
                 // ignoreAsideBar: true,
                 // needLogin: true
               },
-              component: () => import(/* webpackChunkName: 'data' */'../views/data/popular-stocks/index.vue')
+              component: () => import(/* webpackChunkName: 'data' */'../views/data/up-down-num/index.vue')
             }
           ]
         },

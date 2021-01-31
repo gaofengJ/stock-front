@@ -38,7 +38,7 @@ export default {
           value: 'quotation'
         },
         {
-          label: '复盘数据',
+          label: '数据看盘',
           value: 'data'
         },
         {
