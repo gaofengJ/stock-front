@@ -11,6 +11,7 @@ import '@/styles/css/element-variables.scss'
 import '@/styles/css/iconfont.scss'
 // global components
 import './components/index'
+import { randomId } from '@utils/tool'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
@@ -20,6 +21,9 @@ Vue.use(Echarts)
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+
+// 初始化埋点相关
+window.localStorage.wmUserInfo = JSON.stringify({ userId: randomId(), userTag: 'visitor', projectVersion: '1.0.1' })
 
 new Vue({
   router,
