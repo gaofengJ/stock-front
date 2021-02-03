@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+const isPC = true
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
@@ -106,6 +108,14 @@ const router = new VueRouter({
       ]
     },
     {
+      path: '/mobile-interceptor',
+      name: 'mobile-interceptor',
+      meta: {
+        title: '请在PC端访问'
+      },
+      component: () => import('../views/static/mobile-interceptor/index.vue')
+    },
+    {
       path: '*',
       name: 'not-found',
       meta: {
@@ -117,6 +127,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (!(isPC || to.path === '/mobile-interceptor')) { // 移动端拦截
+    next({
+      path: '/mobile-interceptor',
+      query: to.query
+    })
+  }
+
   if (to.meta.title) { // 判斷是否有标题
     document.title = to.meta.title
   }
