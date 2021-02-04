@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { getSystemInfo } from '../utils/tool'
 
 Vue.use(VueRouter)
 
-const isPC = true
+const systemInfo = getSystemInfo().ua
+const isMobile = systemInfo.indexOf('Mobile') > -1
 
 const router = new VueRouter({
   mode: 'history',
@@ -127,7 +129,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!(isPC || to.path === '/mobile-interceptor')) { // 移动端拦截
+  if (!(!isMobile || to.path === '/mobile-interceptor')) { // 移动端拦截
     next({
       path: '/mobile-interceptor',
       query: to.query

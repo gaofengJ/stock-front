@@ -24,3 +24,9 @@ export function randomId (len) {
   }
   return str
 }
+
+export function getSystemInfo () {
+  const UAParser = require('ua-parser-js')
+  const parser = new UAParser()
+  return parser.getResult()
+}
