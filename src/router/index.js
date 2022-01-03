@@ -9,6 +9,7 @@ const isMobile = systemInfo.indexOf('Mobile') > -1
 
 const router = new VueRouter({
   mode: 'history',
+  base: 'stock',
   routes: [
     {
       path: '/',
