@@ -12,9 +12,9 @@ if (__ENV__ === 'test') {
 if (__ENV__ === 'pre') {
   tmp = require('./pre/index').default
 }
-// online
-if (__ENV__ === 'online') {
-  tmp = require('./online/index').default
+// production
+if (__ENV__ === 'production') {
+  tmp = require('./production/index').default
 }
 
 export default tmp
