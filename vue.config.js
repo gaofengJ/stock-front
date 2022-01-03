@@ -4,7 +4,7 @@ const projectRoot = path.resolve(__dirname)
 
 module.exports = {
   // 基本路径
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/stock' : '/',
   // 构建时的输出目录
   outputDir: projectRoot + '/dist',
   // 放置生成的静态资源(js、css、img、fonts)的目录
