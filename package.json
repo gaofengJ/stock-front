@@ -14,7 +14,7 @@
     "echarts": "^4.9.0",
     "element-ui": "^2.13.2",
     "lodash": "^4.17.20",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.1",
     "nprogress": "^0.2.0",
     "ua-parser-js": "^0.7.23",
     "vue": "^2.6.11",
