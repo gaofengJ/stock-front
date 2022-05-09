@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useDidMount } from 'hooooks';
-import { menus } from '@/data/config';
+import { menus } from '@/const/index';
 import './index.less';
 
 let timer: any = null;
 
-const Order = () => {
+function Order() {
   const History = useHistory();
 
   const [menuArr, setMenuArr] = useState<string[]>([]);
@@ -40,19 +40,19 @@ const Order = () => {
   });
 
   return (
-    <div className='order-page'>
+    <div className="order-page">
       <div>还在犹豫吗？马上随机点餐，拯救选择困难症~</div>
-      <div className='menu-content'>{menuArr[index]}</div>
-      <div className='button-wrapper'>
-        <div color='primary' onClick={handleOrder}>
+      <div className="menu-content">{menuArr[index]}</div>
+      <div className="button-wrapper">
+        <button type="submit" color="primary" onClick={handleOrder}>
           {isOrdering ? '停止点菜' : '开始点菜'}
-        </div>
-        <div color='primary' onClick={handelGoSettings}>
+        </button>
+        <button type="submit" color="primary" onClick={handelGoSettings}>
           修改菜单
-        </div>
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default Order;
