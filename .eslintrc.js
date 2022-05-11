@@ -42,6 +42,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'no-use-before-define': 'off',
+    'func-names': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

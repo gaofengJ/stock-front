@@ -1,12 +1,11 @@
 import React from 'react';
 import RouterConfig from '@/routes';
+import 'antd/dist/antd.less';
 import './App.less';
 
-const App: React.FC = () => {
+const App: React.FC = function () {
   return (
-    <div>
-      <RouterConfig />
-    </div>
+    <RouterConfig />
   );
 };
 

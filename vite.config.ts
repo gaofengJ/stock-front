@@ -17,6 +17,16 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {
+          hack: 'true; @import "/src/assets/styles/antd-theme.less";',
+        },
+      }
+    },
+  },
   server: {
     host: '0.0.0.0', // 配置IP
   },

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Order, Settings } from '@/page';
+import { Settings, Dashboard } from '@/page';
 
 interface IRoute {
   path: string;
@@ -13,13 +13,18 @@ interface IRoute {
 const routes: IRoute[] = [
   {
     path: '/',
-    name: 'Order',
-    Component: Order,
+    name: 'Dashboard',
+    Component: Dashboard,
   },
   {
     path: '/settings',
     name: 'Settings',
     Component: Settings,
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    Component: Dashboard,
   },
 ];
 
