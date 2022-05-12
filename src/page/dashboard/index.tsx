@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
@@ -13,22 +14,22 @@ const IconFont = createFromIconfontCN({
 
 const { Header, Content, Sider } = Layout;
 
-const items1: MenuProps['items'] = [
+const tabs: MenuProps['items'] = [
   {
     key: 'home',
-    label: '首页',
+    label: <Link to="/home">首页</Link>,
   },
   {
     key: 'market',
-    label: '市场行情',
+    label: <Link to="/market">市场行情</Link>,
   },
   {
     key: 'data',
-    label: '数据分析',
+    label: <Link to="/data">数据分析</Link>,
   },
   {
     key: 'review',
-    label: '每日复盘',
+    label: <Link to="/data">每日复盘</Link>,
   },
 ];
 
@@ -49,6 +50,8 @@ const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOu
 });
 
 function Dashboard() {
+  // eslint-disable-next-line no-unused-vars
+  const [selectedTab, setSelectedTab] = useState(['home']);
   return (
     <Layout style={{ height: '100vh' }}>
       <Header className="dashboard-header">
@@ -57,19 +60,31 @@ function Dashboard() {
           style={{ fontSize: '32px' }}
         />
         <span
-          style={{ padding: '0 80px 0 4px', fontSize: '20px', fontWeight: 400 }}
+          style={{
+            padding: '0 80px 0 4px',
+            fontSize: '20px',
+            fontWeight: 400,
+          }}
         >
           木风同学
         </span>
-        <Menu mode="horizontal" defaultSelectedKeys={['home']} items={items1} />
+        <Menu
+          mode="horizontal"
+          defaultSelectedKeys={selectedTab}
+          items={tabs}
+        />
       </Header>
       <Layout>
-        <Sider width={256} className="site-layout-background">
+        <Sider
+          width={256}
+          theme="light"
+          collapsible
+        >
           <Menu
             mode="inline"
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: '1px solid #e8e8e8' }}
+            style={{ height: '100%', borderRight: '1px solid #e3e5e7' }}
             items={items2}
           />
         </Sider>
@@ -80,7 +95,7 @@ function Dashboard() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <Content
-            className="site-layout-background"
+            className="dashboard-content"
             style={{
               padding: 24,
               margin: 0,

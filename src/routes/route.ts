@@ -17,8 +17,8 @@ const routes: IRoute[] = [
     Component: Dashboard,
   },
   {
-    path: '/settings',
-    name: 'Settings',
+    path: '/data',
+    name: 'Data',
     Component: Settings,
   },
   {
