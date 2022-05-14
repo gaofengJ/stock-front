@@ -7,7 +7,7 @@ import {
   DataBasic,
   DataBasicStock,
   DataBasicDaily,
-  DataMood,
+  DataQuota,
   DataLimit,
   Review,
 } from '@/page';
@@ -43,9 +43,9 @@ export const routes: IRoute[] = [
         Component: Data,
       },
       {
-        path: '/data/mood',
-        name: 'DataMood',
-        Component: DataMood,
+        path: '/data/quota',
+        name: 'DataQuota',
+        Component: DataQuota,
       },
       {
         path: '/data/limit',

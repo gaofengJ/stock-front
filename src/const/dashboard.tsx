@@ -43,9 +43,9 @@ export const routeItems: Record<string, any>[] = [
     showBreadcrumb: true,
     siderMenuItems: [
       {
-        key: 'dataMood',
+        key: 'dataQuota',
         icon: React.createElement(LineChartOutlined),
-        label: <Link to="/data/mood">市场情绪</Link>,
+        label: <Link to="/data/quota">情绪指标</Link>,
       },
       {
         key: 'dataLimit',
@@ -85,7 +85,7 @@ export const breadcrumbMap: Record<string, string> = {
   review: '每日复盘',
   // 二级路由（数据分析）
   basic: '基础信息',
-  mood: '市场情绪',
+  quota: '情绪指标',
   limit: '连板统计',
   // 三级路由（数据分析 -> 基础信息）
   stock: '个股基本信息',

@@ -5,7 +5,7 @@ import ReactEChartsCore from 'echarts-for-react/lib/core';
 import * as echarts from 'echarts/core';
 // Import charts, all with Chart suffix
 import {
-  // LineChart,
+  LineChart,
   BarChart,
   // PieChart,
   // ScatterChart,
@@ -48,7 +48,7 @@ import {
   // MarkPointComponent,
   // MarkLineComponent,
   // MarkAreaComponent,
-  // LegendComponent,
+  LegendComponent,
   // LegendScrollComponent,
   // LegendPlainComponent,
   // DataZoomComponent,
@@ -71,26 +71,28 @@ import {
 echarts.use(
   [
     // charts
+    LineChart,
     BarChart,
     // components
     GridComponent,
-    TitleComponent,
     ToolboxComponent,
     TooltipComponent,
+    TitleComponent,
+    LegendComponent,
     // renderers
     CanvasRenderer,
   ],
 );
 
 const Echarts = (props: any) => {
-  const { options } = props;
+  const { getOption } = props;
   return (
     <ReactEChartsCore
       echarts={echarts}
-      option={options}
+      option={getOption()}
       notMerge // 可选，是否不跟之前设置的 option 进行合并，默认为 false
       lazyUpdate // 可选，在设置完 option 后是否不立即更新图表，默认为 false
-      // style={{ height: '300px' }}
+      style={{ height: '320px' }}
       // theme="theme_name"
       // onChartReady={this.onChartReady}
       // onEvents={EventsDict}
