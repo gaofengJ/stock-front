@@ -1,5 +1,5 @@
 import React from 'react';
-import RouterConfig from '@/routes';
+import { RouterConfig } from '@/routes';
 import 'antd/dist/antd.less';
 import './App.less';
 

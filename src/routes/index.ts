@@ -1,3 +1,6 @@
-import RouterConfig from './config';
+import { InnerRoute, RouterConfig } from './config';
 
-export default RouterConfig;
+export {
+  InnerRoute,
+  RouterConfig,
+};
