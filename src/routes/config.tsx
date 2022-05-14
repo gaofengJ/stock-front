@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
-  HashRouter as Router, Route, withRouter,
+  HashRouter as Router, Route, Redirect, withRouter,
 } from 'react-router-dom';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
 import { IRoute, routes } from './route';
@@ -57,6 +57,7 @@ export const InnerRoute = (props: { innerRoutes: IRoute[] }) => {
           />
         )))
       }
+      <Redirect from="/*" to="/data" />
     </CacheSwitch>
   );
 };

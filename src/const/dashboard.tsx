@@ -43,26 +43,26 @@ export const routeItems: Record<string, any>[] = [
     showBreadcrumb: true,
     siderMenuItems: [
       {
-        key: 'dataQuota',
+        key: '/data/quota',
         icon: React.createElement(LineChartOutlined),
         label: <Link to="/data/quota">情绪指标</Link>,
       },
       {
-        key: 'dataLimit',
+        key: '/data/limit',
         icon: React.createElement(RiseOutlined),
         label: <Link to="/data/limit">连板统计</Link>,
       },
       {
-        key: 'dataBasic',
+        key: '/data/basic',
         icon: React.createElement(TableOutlined),
         label: <Link to="/data/basic">基础信息</Link>,
         children: [
           {
-            key: 'basicStock',
+            key: '/data/basic/stock',
             label: <Link to="/data/basic/stock">个股基本信息</Link>,
           },
           {
-            key: 'basicDaily',
+            key: '/data/basic/daily',
             label: <Link to="/data/basic/daily">每日交易数据</Link>,
           },
         ],

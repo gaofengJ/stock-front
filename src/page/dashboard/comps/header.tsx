@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { createFromIconfontCN } from '@ant-design/icons';
 
@@ -11,8 +12,11 @@ const IconFont = createFromIconfontCN({
 });
 
 const CompHeader = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const primaryPath = pathname.split('/')[1];
   // eslint-disable-next-line no-unused-vars
-  const [selectedTab, setSelectedTab] = useState(['home']);
+  const [selectedTab, setSelectedTab] = useState([primaryPath]);
   return (
     <Header className="dashboard-header">
       <IconFont
