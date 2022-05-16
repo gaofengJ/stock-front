@@ -11,7 +11,6 @@ const CompSider = () => {
   const { pathname } = location;
   const primaryPath = pathname.split('/')[1];
   const mainMenuKey = pathname.split('/').slice(0, 3).join('/');
-  console.log(mainMenuKey);
   const curRouteItem = routeItems.find(
     (routeItem: Record<string, any>) => routeItem.key === primaryPath,
   );

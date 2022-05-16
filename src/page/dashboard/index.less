@@ -1,8 +1,21 @@
 .dashboard-header {
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-border-regular);
+  box-shadow: 0px 2px 2px var(--color-border-regular);
 }
 .dashboard-content {
-  background-color: var(--color-bg1);
+  &-wrapper {
+    padding: 24px;
+    margin: 0;
+    min-height: 100%;
+    background-color: var(--color-bg1);
+  }
+  &::after {
+    content: '';
+    display: block;
+    height: 24px;
+  }
 }

@@ -1,15 +1,47 @@
 import React, { useState, useEffect } from 'react';
+import { DatePicker } from 'antd';
 import { STATISTICSAPI } from '@/api';
 import ECharts from '@/components/echarts';
+import moment from 'moment';
+import {
+  colorStockSentimentA,
+  colorStockSentimentB,
+  colorStockSentimentC,
+  colorStockSentimentD,
+} from '@/const/color';
+
+const { RangePicker } = DatePicker;
 
 const Sentiment = () => {
+  const [dates, setDates] = useState([]);
+  const [hackVale, setHackValue] = useState<any>();
+  const [value, setValue] = useState();
+  const onRangeChange = (valArr: any, valStrArr: any) => {
+    setValue(valArr);
+    getSentiment(valStrArr[0], valStrArr[1]);
+  };
+  const disabledDate = (current: any): boolean => {
+    const maxDiff: number = 60; // 最大日期差
+    if (!dates || !dates.length) return false;
+    const tooLate = dates[0] && current.diff(dates[0], 'days') > maxDiff;
+    const tooEarly = dates[1] && (dates[1] as any).diff(current, 'days') > maxDiff;
+    return tooEarly || tooLate;
+  };
+  const onOpenChange = (open: boolean) => {
+    if (open) {
+      setHackValue([]);
+      setDates([]);
+    } else {
+      setHackValue(undefined);
+    }
+  };
   const [sentimentlist, setSentimentlist] = useState<Record<string, any>[]>([]);
   useEffect(() => {
     getSentiment();
   }, []);
   const getSentiment = async (
-    startDate: string = '2022-01-04',
-    endDate: string = '2022-01-28',
+    startDate: string = moment(new Date()).subtract(20, 'days').format('YYYY-MM-DD'),
+    endDate: string = moment(new Date()).format('YYYY-MM-DD'),
   ) => {
     try {
       const { list } = await STATISTICSAPI.getSentiment({
@@ -22,63 +54,97 @@ const Sentiment = () => {
     }
   };
   const getOption = () => ({
-    title: {
-      text: '短线情绪指标',
-    },
-    tooltip: {
-      trigger: 'axis',
-    },
-    legend: {
-      data: ['非一字涨停', '打板高开率', '打板成功率', '打板被砸率'],
-    },
-    color: ['#E26CB3', '#FFA283', '#67E0E3', '#37A2DA'],
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true,
+      left: '24',
+      right: '24',
+      bottom: '24',
+      containLabel: true, // grid 区域是否包含坐标轴的刻度标签(为true时left，right等属性决定包含坐标轴标签在内的矩形的位置)
     },
-    toolbox: {
-      feature: {
-        saveAsImage: {},
-      },
+    title: {
+      text: '短线情绪',
+      show: false,
+      top: 8,
+      left: 8,
     },
     xAxis: {
       type: 'category',
-      boundaryGap: false,
       axisLabel: {
-        rotate: -90,
+        interval: 0,
+        rotate: 45, // 倾斜度 -90 至 90 默认为0
       },
       data: sentimentlist.map((item: Record<string, any>) => (item.tradeDate)),
     },
     yAxis: {
       type: 'value',
+      interval: 20,
+    },
+    tooltip: {
+      trigger: 'axis',
+      padding: 8,
+      borderWidth: 0,
+    },
+    legend: {
+      top: 8,
+      data: ['非一字涨停', '打板高开率', '打板成功率', '打板被砸率'],
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {
+          title: '保存为图片',
+        },
+      },
+      top: 8,
+      right: 8,
     },
     series: [
       {
-        name: '非一字涨停',
         type: 'line',
+        name: '非一字涨停',
+        itemStyle: {
+          color: colorStockSentimentA,
+        },
         data: sentimentlist.map((item: Record<string, any>) => (item.sentimentA)),
       },
       {
-        name: '打板高开率',
         type: 'line',
+        name: '打板高开率',
+        itemStyle: {
+          color: colorStockSentimentB,
+        },
         data: sentimentlist.map((item: Record<string, any>) => (item.sentimentB)),
       },
       {
-        name: '打板成功率',
         type: 'line',
+        name: '打板成功率',
+        itemStyle: {
+          color: colorStockSentimentC,
+        },
         data: sentimentlist.map((item: Record<string, any>) => (item.sentimentC)),
       },
       {
-        name: '打板被砸率',
         type: 'line',
+        name: '打板被砸率',
+        itemStyle: {
+          color: colorStockSentimentD,
+        },
         data: sentimentlist.map((item: Record<string, any>) => (item.sentimentD)),
       },
     ],
   });
   return (
-    <ECharts getOption={getOption} />
+    <div className="data-quota-statistics">
+      <div className="chart-header">
+        <span className="chart-header-title">短线情绪指标</span>
+        <RangePicker
+          value={hackVale || value}
+          disabledDate={disabledDate}
+          onCalendarChange={(val: any) => setDates(val)}
+          onChange={onRangeChange}
+          onOpenChange={onOpenChange}
+        />
+      </div>
+      <ECharts getOption={getOption} />
+    </div>
   );
 };
 

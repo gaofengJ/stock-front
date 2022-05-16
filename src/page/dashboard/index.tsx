@@ -17,17 +17,12 @@ function Dashboard(props: any) {
       <CompHeader />
       <Layout>
         <CompSider />
-        <Layout style={{ padding: '0 24px 24px' }}>
+        <Layout style={{ overflowY: 'auto', padding: '0 24px 24px' }}>
           <CompBreadCrumb />
-          <Content
-            className="dashboard-content"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            <InnerRoute innerRoutes={childRoutes} />
+          <Content className="dashboard-content">
+            <section className="dashboard-content-wrapper">
+              <InnerRoute innerRoutes={childRoutes} />
+            </section>
           </Content>
         </Layout>
       </Layout>
