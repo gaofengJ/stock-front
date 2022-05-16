@@ -18,16 +18,6 @@ const DataQuota = () => (
       <Col xl={{ span: 12 }}><Sentiment /></Col>
       <Col xl={{ span: 12 }} />
     </Row>
-    <Row
-      align="middle"
-      gutter={[16, 32]}
-      justify="space-around"
-    >
-      <Col xl={{ span: 12 }}><Statistics /></Col>
-      <Col xl={{ span: 12 }}><UpNum /></Col>
-      <Col xl={{ span: 12 }}><Sentiment /></Col>
-      <Col xl={{ span: 12 }} />
-    </Row>
   </div>
 );
 
