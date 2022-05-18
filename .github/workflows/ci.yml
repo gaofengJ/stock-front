@@ -5,6 +5,10 @@ on:
     branches:
       # master分支，你也可以改成其他分支
       - master
+  merge:
+    branches:
+      # master分支，你也可以改成其他分支
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
