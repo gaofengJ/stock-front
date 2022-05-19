@@ -29,7 +29,7 @@ const MainRouter = withRouter(({ location }) => (
 
 export function RouterConfig() {
   return (
-    <Router basename={import.meta.env.MODE === 'development' ? '' : '/stock'}>
+    <Router>
       <MainRouter />
     </Router>
   );
