@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { message } from 'antd';
 import { TypeApi } from '../index.d';
 
-const BASE_URL: string = import.meta.env.MODE === 'development' ? '/api/api' : `${window.location.origin}/api`;
+const BASE_URL: string = import.meta.env.MODE === 'development' ? '/api' : `${window.location.origin}/api`;
 
 const HEADER_PARAMS = {
   'X-CSRF': `csrf-${Math.random()}`,
