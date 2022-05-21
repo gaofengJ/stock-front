@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
+import { store } from '@/store';
 import { STATISTICSAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
 import { colorStockGreen, colorStockGray, colorStockRed } from '@/const/color';
 
 const Statistics = () => {
+  const { state } = useContext(store);
+  const { theme } = state;
   const [value, setValue] = useState();
   const onDateChange = (val: any, valStr: string) => {
     setValue(val);
@@ -90,14 +93,20 @@ const Statistics = () => {
   return (
     <div className="data-quota-statistics">
       <div className="chart-header">
-        <span className="chart-header-title">个股涨跌统计</span>
+        <span
+          className="chart-header-title"
+          style={{ color: theme === 'dark' ? 'var(--color-text-dark)' : '' }}
+        >
+          个股涨跌统计
+
+        </span>
         <DatePicker
           bordered={false}
           value={value}
           onChange={onDateChange}
         />
       </div>
-      <ECharts getOption={getOption} />
+      <ECharts getOption={getOption} theme={theme} />
     </div>
   );
 };

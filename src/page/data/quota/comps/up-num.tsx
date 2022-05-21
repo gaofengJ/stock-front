@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
+import { store } from '@/store';
 import { STATISTICSAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
@@ -8,6 +9,8 @@ import { colorStockRed } from '@/const/color';
 const { RangePicker } = DatePicker;
 
 const UpNum = () => {
+  const { state } = useContext(store);
+  const { theme } = state;
   const [dates, setDates] = useState([]);
   const [hackVale, setHackValue] = useState<any>();
   const [value, setValue] = useState();
@@ -105,16 +108,23 @@ const UpNum = () => {
   return (
     <div className="data-quota-statistics">
       <div className="chart-header">
-        <span className="chart-header-title">涨跌家数</span>
+        <span
+          className="chart-header-title"
+          style={{ color: theme === 'dark' ? 'var(--color-text-dark)' : '' }}
+        >
+          涨跌家数
+
+        </span>
         <RangePicker
           value={hackVale || value}
+          bordered={false}
           disabledDate={disabledDate}
           onCalendarChange={(val: any) => setDates(val)}
           onChange={onRangeChange}
           onOpenChange={onOpenChange}
         />
       </div>
-      <ECharts getOption={getOption} />
+      <ECharts getOption={getOption} theme={theme} />
     </div>
   );
 };

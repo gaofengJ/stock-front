@@ -3,6 +3,7 @@ import React from 'react';
 import ReactEChartsCore from 'echarts-for-react/lib/core';
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
 import * as echarts from 'echarts/core';
+
 // Import charts, all with Chart suffix
 import {
   LineChart,
@@ -68,24 +69,22 @@ import {
 } from 'echarts/renderers';
 
 // Register the required components
-echarts.use(
-  [
-    // charts
-    LineChart,
-    BarChart,
-    // components
-    GridComponent,
-    ToolboxComponent,
-    TooltipComponent,
-    TitleComponent,
-    LegendComponent,
-    // renderers
-    CanvasRenderer,
-  ],
-);
+echarts.use([
+  // charts
+  LineChart,
+  BarChart,
+  // components
+  GridComponent,
+  ToolboxComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  // renderers
+  CanvasRenderer,
+]);
 
 const Echarts = (props: any) => {
-  const { getOption } = props;
+  const { getOption, theme } = props;
   return (
     <ReactEChartsCore
       echarts={echarts}
@@ -93,7 +92,7 @@ const Echarts = (props: any) => {
       notMerge // 可选，是否不跟之前设置的 option 进行合并，默认为 false
       lazyUpdate // 可选，在设置完 option 后是否不立即更新图表，默认为 false
       style={{ height: '320px' }}
-      theme="dark"
+      theme={theme || 'light'}
       // onChartReady={this.onChartReady}
       // onEvents={EventsDict}
       opts={{ width: 'auto', height: 300 }}

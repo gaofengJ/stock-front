@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
+import { store } from '@/store';
 import { STATISTICSAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
@@ -13,6 +14,8 @@ import {
 const { RangePicker } = DatePicker;
 
 const Sentiment = () => {
+  const { state } = useContext(store);
+  const { theme } = state;
   const [dates, setDates] = useState([]);
   const [hackVale, setHackValue] = useState<any>();
   const [value, setValue] = useState();
@@ -40,7 +43,9 @@ const Sentiment = () => {
     getSentiment();
   }, []);
   const getSentiment = async (
-    startDate: string = moment(new Date()).subtract(20, 'days').format('YYYY-MM-DD'),
+    startDate: string = moment(new Date())
+      .subtract(20, 'days')
+      .format('YYYY-MM-DD'),
     endDate: string = moment(new Date()).format('YYYY-MM-DD'),
   ) => {
     try {
@@ -72,7 +77,7 @@ const Sentiment = () => {
         interval: 0,
         rotate: 45, // 倾斜度 -90 至 90 默认为0
       },
-      data: sentimentlist.map((item: Record<string, any>) => (item.tradeDate)),
+      data: sentimentlist.map((item: Record<string, any>) => item.tradeDate),
     },
     yAxis: {
       type: 'value',
@@ -103,7 +108,7 @@ const Sentiment = () => {
         itemStyle: {
           color: colorStockSentimentA,
         },
-        data: sentimentlist.map((item: Record<string, any>) => (item.sentimentA)),
+        data: sentimentlist.map((item: Record<string, any>) => item.sentimentA),
       },
       {
         type: 'line',
@@ -111,7 +116,7 @@ const Sentiment = () => {
         itemStyle: {
           color: colorStockSentimentB,
         },
-        data: sentimentlist.map((item: Record<string, any>) => (item.sentimentB)),
+        data: sentimentlist.map((item: Record<string, any>) => item.sentimentB),
       },
       {
         type: 'line',
@@ -119,7 +124,7 @@ const Sentiment = () => {
         itemStyle: {
           color: colorStockSentimentC,
         },
-        data: sentimentlist.map((item: Record<string, any>) => (item.sentimentC)),
+        data: sentimentlist.map((item: Record<string, any>) => item.sentimentC),
       },
       {
         type: 'line',
@@ -127,23 +132,30 @@ const Sentiment = () => {
         itemStyle: {
           color: colorStockSentimentD,
         },
-        data: sentimentlist.map((item: Record<string, any>) => (item.sentimentD)),
+        data: sentimentlist.map((item: Record<string, any>) => item.sentimentD),
       },
     ],
   });
   return (
     <div className="data-quota-statistics">
       <div className="chart-header">
-        <span className="chart-header-title">短线情绪指标</span>
+        <span
+          className="chart-header-title"
+          style={{ color: theme === 'dark' ? 'var(--color-text-dark)' : '' }}
+        >
+          短线情绪指标
+
+        </span>
         <RangePicker
           value={hackVale || value}
+          bordered={false}
           disabledDate={disabledDate}
           onCalendarChange={(val: any) => setDates(val)}
           onChange={onRangeChange}
           onOpenChange={onOpenChange}
         />
       </div>
-      <ECharts getOption={getOption} />
+      <ECharts getOption={getOption} theme={theme} />
     </div>
   );
 };
