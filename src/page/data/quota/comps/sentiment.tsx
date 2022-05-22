@@ -148,7 +148,6 @@ const Sentiment = () => {
         </span>
         <RangePicker
           value={hackVale || value}
-          bordered={false}
           disabledDate={disabledDate}
           onCalendarChange={(val: any) => setDates(val)}
           onChange={onRangeChange}

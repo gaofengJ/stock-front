@@ -101,7 +101,6 @@ const Statistics = () => {
 
         </span>
         <DatePicker
-          bordered={false}
           value={value}
           onChange={onDateChange}
         />

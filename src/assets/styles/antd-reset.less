@@ -1,25 +1,46 @@
+// 布局
 .ant-layout {
   background-color: var(--color-bg2);
 }
-
 .ant-layout-header {
   background-color: var(--color-bg1);
 }
 
-.ant-menu-inline {
-  border-right: none;
+// Aside -> Menu
+.ant-menu-submenu-inline {
+  .ant-menu-submenu-title {
+    a {
+      color: rgba(0, 0, 0, 0.85);
+    }
+    &:hover a {
+      color: var(--parmary);
+    }
+  }
+  &.ant-menu-submenu-selected {
+    a {
+      color: var(--parmary);
+    }
+  }
 }
-
+// Aside -> Menu:dark
+.ant-menu-dark {
+  .ant-menu-submenu-inline {
+    .ant-menu-submenu-title {
+      a {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      &:hover a {
+        color: var(--parmary);
+      }
+    }
+    &.ant-menu-submenu-selected {
+      a {
+        color: var(--parmary);
+      }
+    }
+  }
+}
+// Aside -> trigger
 .ant-layout-sider-trigger {
   border-right: 1px solid var(--color-border-regular);
 }
-
-.ant-menu-submenu {
-  a {
-    color: rgba(0, 0, 0, 0.85);
-  }
-  &.ant-menu-submenu-selected a {
-    color: var(--parmary);
-  }
-}
-
