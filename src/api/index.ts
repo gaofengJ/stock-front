@@ -1,5 +1,7 @@
-import * as STATISTICSAPI from './statistics';
+import * as ANALYSISAPI from './analysis';
+import * as BASICAPI from './basic';
 
 export {
-  STATISTICSAPI,
+  ANALYSISAPI,
+  BASICAPI,
 };

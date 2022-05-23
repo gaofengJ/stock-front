@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Layout, Menu, Switch } from 'antd';
+import {
+  Layout, Menu, Switch, Avatar,
+} from 'antd';
 import { store } from '@/store';
-import { createFromIconfontCN } from '@ant-design/icons';
+import { createFromIconfontCN, UserOutlined } from '@ant-design/icons';
 
 import { headerMenuItems } from '@/const/dashboard';
 
@@ -53,12 +55,17 @@ const CompHeader = () => {
         items={headerMenuItems}
       />
       <span style={{ flexGrow: 1 }} />
-      <div className="flex-c">
+      <div className="flex-c" style={{ paddingRight: 16 }}>
         <Switch checked={switchChecked} onChange={onChange} />
         <span style={{ paddingLeft: 8 }}>
           暗色模式
         </span>
       </div>
+      <Avatar
+        icon={<UserOutlined />}
+        className="cp"
+        style={{ backgroundColor: 'var(--color-red)' }}
+      />
     </Header>
   );
 };

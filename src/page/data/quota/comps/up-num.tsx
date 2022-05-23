@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
 import { store } from '@/store';
-import { STATISTICSAPI } from '@/api';
+import { ANALYSISAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
 import { colorStockRed } from '@/const/color';
@@ -42,7 +42,7 @@ const UpNum = () => {
     endDate: string = moment(new Date()).format('YYYY-MM-DD'),
   ) => {
     try {
-      const { list } = await STATISTICSAPI.getNum({
+      const { list } = await ANALYSISAPI.getNum({
         startDate,
         endDate,
       });

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
 import { store } from '@/store';
-import { STATISTICSAPI } from '@/api';
+import { ANALYSISAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
 import {
@@ -49,7 +49,7 @@ const Sentiment = () => {
     endDate: string = moment(new Date()).format('YYYY-MM-DD'),
   ) => {
     try {
-      const { list } = await STATISTICSAPI.getSentiment({
+      const { list } = await ANALYSISAPI.getSentiment({
         startDate,
         endDate,
       });
