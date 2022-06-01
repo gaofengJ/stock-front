@@ -9,6 +9,8 @@ import './index.less';
 const DataBasicStock = () => {
   const { state } = useContext(store);
   const { theme } = state;
+
+  const [loading, setLoading] = useState(false);
   const [stockList, setStockList] = useState([]);
   const [pageNum, setPageNum] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(20);
@@ -26,6 +28,7 @@ const DataBasicStock = () => {
 
   const getStocks = async () => {
     try {
+      setLoading(true);
       const { total: resTotal, list: resList } = await BASICAPI.getStocks({
         pageNum,
         pageSize,
@@ -37,6 +40,8 @@ const DataBasicStock = () => {
       })));
     } catch (e) {
       console.info(e);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -44,6 +49,7 @@ const DataBasicStock = () => {
       dataSource={stockList}
       columns={columns}
       scroll={{ x: 4000, y: 'calc(100vh - 400px)' }}
+      loading={loading}
       pagination={{
         pageSize,
         total,

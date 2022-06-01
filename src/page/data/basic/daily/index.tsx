@@ -13,6 +13,7 @@ const DataBasicDaily = () => {
 
   const dateFormat = 'YYYY-MM-DD';
   const defaultDate = moment().hour() < 19 ? moment().subtract(1, 'days') : moment(); // 早于19点取前一天
+  const [loading, setLoading] = useState(false);
   const [dailyList, setDailyList] = useState([]);
   const [pageNum, setPageNum] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(20);
@@ -30,6 +31,7 @@ const DataBasicDaily = () => {
 
   const getDaily = async (date: string = defaultDate.format(dateFormat)) => {
     try {
+      setLoading(true);
       const { total: resTotal, list: resList } = await BASICAPI.getDaily({
         pageNum,
         pageSize,
@@ -42,6 +44,8 @@ const DataBasicDaily = () => {
       })));
     } catch (e) {
       console.info(e);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -49,6 +53,7 @@ const DataBasicDaily = () => {
       dataSource={dailyList}
       columns={columns}
       scroll={{ x: 4000, y: 'calc(100vh - 400px)' }}
+      loading={loading}
       pagination={{
         pageSize,
         total,
