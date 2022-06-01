@@ -12,7 +12,7 @@ const DataBasicDaily = () => {
   const { theme } = state;
 
   const dateFormat = 'YYYY-MM-DD';
-  const defaultDate = moment().hour() < 18 ? moment().subtract(1, 'days') : moment(); // 早于18点取前一天
+  const defaultDate = moment().hour() < 19 ? moment().subtract(1, 'days') : moment(); // 早于19点取前一天
   const [dailyList, setDailyList] = useState([]);
   const [pageNum, setPageNum] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(20);
@@ -22,7 +22,6 @@ const DataBasicDaily = () => {
     setPageNum(page);
   };
   const onShowSizeChange: PaginationProps['onShowSizeChange'] = (_, size) => {
-    setPageNum(1);
     setPageSize(size);
   };
   useEffect(() => {
@@ -49,9 +48,8 @@ const DataBasicDaily = () => {
     <Table
       dataSource={dailyList}
       columns={columns}
-      scroll={{ x: 4000 }}
+      scroll={{ x: 4000, y: 'calc(100vh - 400px)' }}
       pagination={{
-        current: pageNum,
         pageSize,
         total,
         showSizeChanger: true,

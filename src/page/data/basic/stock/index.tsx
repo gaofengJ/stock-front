@@ -18,7 +18,6 @@ const DataBasicStock = () => {
     setPageNum(page);
   };
   const onShowSizeChange: PaginationProps['onShowSizeChange'] = (_, size) => {
-    setPageNum(1);
     setPageSize(size);
   };
   useEffect(() => {
@@ -44,9 +43,8 @@ const DataBasicStock = () => {
     <Table
       dataSource={stockList}
       columns={columns}
-      scroll={{ x: 4000 }}
+      scroll={{ x: 4000, y: 'calc(100vh - 400px)' }}
       pagination={{
-        current: pageNum,
         pageSize,
         total,
         showSizeChanger: true,

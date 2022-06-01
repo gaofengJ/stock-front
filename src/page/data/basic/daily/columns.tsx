@@ -50,6 +50,7 @@ const columns: ColumnsType<DataType> = [
     title: '交易日期',
     dataIndex: 'tradeDate',
     key: 'tradeDate',
+    fixed: 'left',
   },
   {
     title: '涨停价',

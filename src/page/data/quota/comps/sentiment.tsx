@@ -22,7 +22,7 @@ const Sentiment = () => {
   const [hackVale, setHackValue] = useState<any>();
   const defaultDate = [
     moment().subtract(30, 'days'), // 30天前
-    moment().hour() < 18 ? moment().subtract(1, 'days') : moment(), // 早于18点取前一天
+    moment().hour() < 19 ? moment().subtract(1, 'days') : moment(), // 早于19点取前一天
   ];
   const [value, setValue] = useState(defaultDate);
   const onRangeChange = (valArr: any, valStrArr: any) => {
