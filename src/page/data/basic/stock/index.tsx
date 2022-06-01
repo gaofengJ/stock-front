@@ -11,7 +11,7 @@ const DataBasicStock = () => {
   const { theme } = state;
   const [stockList, setStockList] = useState([]);
   const [pageNum, setPageNum] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
 
   const onChange: PaginationProps['onChange'] = (page) => {
@@ -44,6 +44,7 @@ const DataBasicStock = () => {
     <Table
       dataSource={stockList}
       columns={columns}
+      scroll={{ x: 4000 }}
       pagination={{
         current: pageNum,
         pageSize,
