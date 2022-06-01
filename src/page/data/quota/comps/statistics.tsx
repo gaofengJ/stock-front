@@ -9,9 +9,13 @@ import { colorStockGreen, colorStockGray, colorStockRed } from '@/const/color';
 const Statistics = () => {
   const { state } = useContext(store);
   const { theme } = state;
-  const [value, setValue] = useState();
+
+  const dateFormat = 'YYYY-MM-DD';
+  const defaultDate = moment().hour() < 18 ? moment().subtract(1, 'days') : moment(); // 早于18点取前一天
+  const [value, setValue] = useState(defaultDate);
   const onDateChange = (val: any, valStr: string) => {
     setValue(val);
+    if (!valStr) return;
     getStatistics(valStr);
   };
   const [statisticslist, setStatisticslist] = useState<Record<string, any>[]>([]);
@@ -19,7 +23,7 @@ const Statistics = () => {
     getStatistics();
   }, []);
   const getStatistics = async (
-    date: string = moment(new Date()).format('YYYY-MM-DD'),
+    date: string = defaultDate.format(dateFormat),
   ) => {
     try {
       const { list } = await ANALYSISAPI.getStatistics({

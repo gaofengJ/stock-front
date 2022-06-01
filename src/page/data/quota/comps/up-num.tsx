@@ -11,9 +11,15 @@ const { RangePicker } = DatePicker;
 const UpNum = () => {
   const { state } = useContext(store);
   const { theme } = state;
+
+  const dateFormat = 'YYYY-MM-DD';
   const [dates, setDates] = useState([]);
   const [hackVale, setHackValue] = useState<any>();
-  const [value, setValue] = useState();
+  const defaultDate = [
+    moment().subtract(30, 'days'), // 30天前
+    moment().hour() < 18 ? moment().subtract(1, 'days') : moment(), // 早于18点取前一天
+  ];
+  const [value, setValue] = useState(defaultDate);
   const onRangeChange = (valArr: any, valStrArr: any) => {
     setValue(valArr);
     getNum(valStrArr[0], valStrArr[1]);
@@ -38,8 +44,8 @@ const UpNum = () => {
     getNum();
   }, []);
   const getNum = async (
-    startDate: string = moment(new Date()).subtract(20, 'days').format('YYYY-MM-DD'),
-    endDate: string = moment(new Date()).format('YYYY-MM-DD'),
+    startDate: string = defaultDate[0]?.format(dateFormat),
+    endDate: string = defaultDate[1]?.format(dateFormat),
   ) => {
     try {
       const { list } = await ANALYSISAPI.getNum({
