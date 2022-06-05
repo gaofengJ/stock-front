@@ -4,16 +4,11 @@ import { store } from '@/store';
 import { ANALYSISAPI } from '@/api';
 import ECharts from '@/components/echarts';
 import moment from 'moment';
-import {
-  colorStockSentimentA,
-  colorStockSentimentB,
-  colorStockSentimentC,
-  colorStockSentimentD,
-} from '@/const/color';
+import { colorStockGreen, colorStockRed } from '@/const/color';
 
 const { RangePicker } = DatePicker;
 
-const Sentiment = () => {
+const Limits = () => {
   const { state } = useContext(store);
   const { theme } = state;
 
@@ -22,12 +17,12 @@ const Sentiment = () => {
   const [hackVale, setHackValue] = useState<any>();
   const defaultDate = [
     moment().subtract(30, 'days'), // 30天前
-    moment().hour() < 19 ? moment().subtract(1, 'days') : moment(), // 早于19点取前一天
+    moment().hour() < 19 ? moment().subtract(1, 'days') : moment(), // 早于18点取前一天
   ];
   const [value, setValue] = useState(defaultDate);
   const onRangeChange = (valArr: any, valStrArr: any) => {
     setValue(valArr);
-    getSentiment(valStrArr[0], valStrArr[1]);
+    getLimits(valStrArr[0], valStrArr[1]);
   };
   const disabledDate = (current: any): boolean => {
     const maxDiff: number = 60; // 最大日期差
@@ -44,20 +39,20 @@ const Sentiment = () => {
       setHackValue(undefined);
     }
   };
-  const [sentimentlist, setSentimentlist] = useState<Record<string, any>[]>([]);
+  const [limitList, setLimitList] = useState<Record<string, any>[]>([]);
   useEffect(() => {
-    getSentiment();
+    getLimits();
   }, []);
-  const getSentiment = async (
+  const getLimits = async (
     startDate: string = defaultDate[0]?.format(dateFormat),
     endDate: string = defaultDate[1]?.format(dateFormat),
   ) => {
     try {
-      const { list } = await ANALYSISAPI.getSentiment({
+      const { list } = await ANALYSISAPI.getLimits({
         startDate,
         endDate,
       });
-      setSentimentlist(list);
+      setLimitList(list);
     } catch (e) {
       console.info(e);
     }
@@ -70,7 +65,7 @@ const Sentiment = () => {
       containLabel: true, // grid 区域是否包含坐标轴的刻度标签(为true时left，right等属性决定包含坐标轴标签在内的矩形的位置)
     },
     title: {
-      text: '短线情绪',
+      text: '涨跌停家数',
       show: false,
       top: 8,
       left: 8,
@@ -81,11 +76,11 @@ const Sentiment = () => {
         interval: 0,
         rotate: 45, // 倾斜度 -90 至 90 默认为0
       },
-      data: sentimentlist.map((item: Record<string, any>) => item.tradeDate),
+      data: limitList.map((item: Record<string, any>) => item.tradeDate),
     },
     yAxis: {
       type: 'value',
-      interval: 20,
+      interval: 500,
     },
     tooltip: {
       trigger: 'axis',
@@ -94,7 +89,7 @@ const Sentiment = () => {
     },
     legend: {
       top: 8,
-      data: ['非一字涨停', '打板高开率', '打板成功率', '打板被砸率'],
+      data: ['涨停家数', '跌停家数'],
     },
     toolbox: {
       feature: {
@@ -108,35 +103,19 @@ const Sentiment = () => {
     series: [
       {
         type: 'line',
-        name: '非一字涨停',
+        name: '涨停家数',
         itemStyle: {
-          color: colorStockSentimentA,
+          color: colorStockRed,
         },
-        data: sentimentlist.map((item: Record<string, any>) => item.sentimentA),
+        data: limitList.map((item: Record<string, any>) => item.up),
       },
       {
-        type: 'line',
-        name: '打板高开率',
+        type: 'bar',
+        name: '跌停家数',
         itemStyle: {
-          color: colorStockSentimentB,
+          color: colorStockGreen,
         },
-        data: sentimentlist.map((item: Record<string, any>) => item.sentimentB),
-      },
-      {
-        type: 'line',
-        name: '打板成功率',
-        itemStyle: {
-          color: colorStockSentimentC,
-        },
-        data: sentimentlist.map((item: Record<string, any>) => item.sentimentC),
-      },
-      {
-        type: 'line',
-        name: '打板被砸率',
-        itemStyle: {
-          color: colorStockSentimentD,
-        },
-        data: sentimentlist.map((item: Record<string, any>) => item.sentimentD),
+        data: limitList.map((item: Record<string, any>) => item.down),
       },
     ],
   });
@@ -147,7 +126,7 @@ const Sentiment = () => {
           className="chart-header-title"
           style={{ color: theme === 'dark' ? 'var(--color-text-dark)' : '' }}
         >
-          短线情绪指标
+          涨跌停家数
 
         </span>
         <RangePicker
@@ -163,4 +142,4 @@ const Sentiment = () => {
   );
 };
 
-export default Sentiment;
+export default Limits;

@@ -6,6 +6,17 @@
   background-color: var(--color-bg1);
 }
 
+// ant-breadcrumb:dark
+.ant-breadcrumb.dark li {
+  color: var(--color-text-dark);
+  .ant-breadcrumb-separator {
+    color: var(--color-text-dark);
+  }
+  &:last-child {
+    color: var(--color-text-white);
+  }
+}
+
 // Aside -> Menu
 .ant-menu-submenu-inline {
   .ant-menu-submenu-title {
@@ -22,7 +33,7 @@
     }
   }
 }
-// Aside -> Menu:dark
+// Aside -> Menu.dark
 .ant-menu-dark {
   .ant-menu-submenu-inline {
     .ant-menu-submenu-title {
@@ -43,4 +54,9 @@
 // Aside -> trigger
 .ant-layout-sider-trigger {
   border-right: 1px solid var(--color-border-regular);
+}
+
+// ant-switch
+.ant-switch.ant-switch-checked:focus {
+  box-shadow: none;
 }

@@ -84,16 +84,22 @@ echarts.use([
 ]);
 
 const Echarts = (props: any) => {
+  const onChartReadyCallback = (chart: any) => { // 调用resize，解决echart实例宽度超出的问题
+    chart.resize();
+    setTimeout(() => {
+      chart.resize();
+    }, 300);
+  };
   const { getOption, theme } = props;
   return (
     <ReactEChartsCore
       echarts={echarts}
       option={getOption()}
-      notMerge // 可选，是否不跟之前设置的 option 进行合并，默认为 false
+      // notMerge // 可选，是否不跟之前设置的 option 进行合并，默认为 false
       lazyUpdate // 可选，在设置完 option 后是否不立即更新图表，默认为 false
-      style={{ height: '320px' }}
+      style={{ width: '100%', height: '320px' }}
       theme={theme || 'light'}
-      // onChartReady={this.onChartReady}
+      onChartReady={onChartReadyCallback}
       // onEvents={EventsDict}
       opts={{ width: 'auto', height: 300 }}
       // opts 附加参数：devicePixelRatio（设备像素比），renderer（渲染器 'canvas'或'svg'），width(实例宽度)，height（实例高度）

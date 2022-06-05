@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
+import { store } from '@/store';
 import { routeItems, breadcrumbMap } from '@/const/dashboard';
 
 const CompBreadCrumb = () => {
+  const { state } = useContext(store);
+  const { theme } = state;
   const location = useLocation();
   const { pathname } = location;
   // eslint-disable-next-line no-unused-vars
@@ -15,7 +18,10 @@ const CompBreadCrumb = () => {
   return (
     curRouteItem?.showBreadcrumb
       ? (
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb
+          className={theme === 'dark' ? 'dark' : ''}
+          style={{ margin: '16px 0' }}
+        >
           {
         pathArr.map((path: string) => (
           <Breadcrumb.Item key={path}>{ breadcrumbMap[path] }</Breadcrumb.Item>

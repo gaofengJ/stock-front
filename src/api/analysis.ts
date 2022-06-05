@@ -18,6 +18,15 @@ const getNum = (params: Record<string, any>): Promise<any> => request(
   },
 );
 
+// 查询涨跌停家数
+const getLimits = (params: Record<string, any>): Promise<any> => request(
+  '/analysis/limits',
+  {
+    method: 'get',
+    params,
+  },
+);
+
 // 查询短线情绪指标
 const getSentiment = (params: Record<string, any>): Promise<any> => request(
   '/analysis/sentiment',
@@ -30,5 +39,6 @@ const getSentiment = (params: Record<string, any>): Promise<any> => request(
 export {
   getStatistics,
   getNum,
+  getLimits,
   getSentiment,
 };

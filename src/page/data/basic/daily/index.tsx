@@ -52,7 +52,7 @@ const DataBasicDaily = () => {
     <Table
       dataSource={dailyList}
       columns={columns}
-      scroll={{ x: 4000, y: 'calc(100vh - 400px)' }}
+      scroll={{ x: 4000, y: 'calc(100vh - 360px)' }}
       loading={loading}
       pagination={{
         pageSize,

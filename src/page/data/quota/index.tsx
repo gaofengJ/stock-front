@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import Statistics from './comps/statistics';
 import UpNum from './comps/up-num';
+import Limits from './comps/limits';
 import Sentiment from './comps/sentiment';
 
 import './index.less';
@@ -16,7 +17,7 @@ const DataQuota = () => (
       <Col xl={{ span: 12 }}><Statistics /></Col>
       <Col xl={{ span: 12 }}><UpNum /></Col>
       <Col xl={{ span: 12 }}><Sentiment /></Col>
-      <Col xl={{ span: 12 }} />
+      <Col xl={{ span: 12 }}><Limits /></Col>
     </Row>
   </div>
 );

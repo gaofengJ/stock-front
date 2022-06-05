@@ -24,6 +24,7 @@ function Dashboard(props: any) {
           style={{
             overflowY: 'auto',
             padding: '0 24px 24px',
+            backgroundColor: theme === 'dark' ? 'var(--color-bg5)' : '',
           }}
         >
           <CompBreadCrumb />

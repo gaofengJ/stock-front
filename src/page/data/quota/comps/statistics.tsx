@@ -95,7 +95,7 @@ const Statistics = () => {
     }],
   });
   return (
-    <div className="data-quota-statistics">
+    <div className="data-quota-item">
       <div className="chart-header">
         <span
           className="chart-header-title"
