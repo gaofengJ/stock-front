@@ -11,7 +11,7 @@ const Statistics = () => {
   const { theme } = state;
 
   const dateFormat = 'YYYY-MM-DD';
-  const defaultDate = moment().hour() < 19 ? moment().subtract(1, 'days') : moment(); // 早于18点取前一天
+  const defaultDate = moment().hour() < 19 ? moment().subtract(1, 'days') : moment(); // 早于19点取前一天
   const [value, setValue] = useState(defaultDate);
   const onDateChange = (val: any, valStr: string) => {
     setValue(val);
