@@ -62,9 +62,10 @@ const LimitThree = () => {
   };
   const getOption = () => ({
     grid: {
+      top: '80',
       left: '24',
       right: '24',
-      bottom: '24',
+      bottom: '0',
       containLabel: true, // grid 区域是否包含坐标轴的刻度标签(为true时left，right等属性决定包含坐标轴标签在内的矩形的位置)
     },
     title: {

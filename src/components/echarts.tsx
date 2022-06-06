@@ -97,11 +97,11 @@ const Echarts = (props: any) => {
       option={getOption()}
       // notMerge // 可选，是否不跟之前设置的 option 进行合并，默认为 false
       lazyUpdate // 可选，在设置完 option 后是否不立即更新图表，默认为 false
-      style={{ width: '100%', height: '320px' }}
+      style={{ width: '100%', height: '360px' }}
       theme={theme || 'light'}
       onChartReady={onChartReadyCallback}
       // onEvents={EventsDict}
-      opts={{ width: 'auto', height: 300 }}
+      opts={{ width: 'auto', height: 360 }}
       // opts 附加参数：devicePixelRatio（设备像素比），renderer（渲染器 'canvas'或'svg'），width(实例宽度)，height（实例高度）
       // opts={{ renderer: 'svg' }}
     />
