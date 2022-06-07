@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import {
-  TableOutlined, LineChartOutlined, RiseOutlined,
+  TableOutlined, LineChartOutlined, BarsOutlined, RiseOutlined,
 } from '@ant-design/icons';
 
 // 顶部菜单
@@ -53,6 +53,11 @@ export const routeItems: Record<string, any>[] = [
         label: <Link to="/data/limit">连板统计</Link>,
       },
       {
+        key: '/data/limit-review',
+        icon: React.createElement(BarsOutlined),
+        label: <Link to="/data/limit-review">涨停板复盘</Link>,
+      },
+      {
         key: '/data/basic',
         icon: React.createElement(TableOutlined),
         label: <Link to="/data/basic">基础信息</Link>,
@@ -87,6 +92,7 @@ export const breadcrumbMap: Record<string, string> = {
   basic: '基础信息',
   quota: '情绪指标',
   limit: '连板统计',
+  'limit-review': '涨停板复盘',
   // 三级路由（数据分析 -> 基础信息）
   stock: '个股基本信息',
   daily: '每日交易数据',

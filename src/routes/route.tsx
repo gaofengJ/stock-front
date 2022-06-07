@@ -9,6 +9,7 @@ import {
   DataBasicDaily,
   DataQuota,
   DataLimit,
+  DataLimitReview,
   Review,
 } from '@/page';
 
@@ -51,6 +52,11 @@ export const routes: IRoute[] = [
         path: '/data/limit',
         name: 'DataLimit',
         Component: DataLimit,
+      },
+      {
+        path: '/data/limit-review',
+        name: 'DataLimitReview',
+        Component: DataLimitReview,
       },
       {
         path: '/data/basic',
